@@ -4,8 +4,15 @@ import os
 
 app = Flask(__name__)
 
-# Use a relative path for the CSV file
+# Paths
 CSV_PATH = os.path.join(os.path.dirname(__file__), "career_change_prediction_dataset.csv")
+DB_PATH = os.path.join(os.path.dirname(__file__), "career_database.db")
+
+# Debug file existence
+assert os.path.exists(CSV_PATH), f"File not found: {CSV_PATH}"
+assert os.path.exists(DB_PATH), f"Database file not found: {DB_PATH}"
+
+# Load the dataset
 df = pd.read_csv(CSV_PATH)
 
 @app.route('/')
@@ -14,32 +21,9 @@ def home():
 
 @app.route('/about')
 def about():
-    # Analyze the dataset
     num_rows, num_columns = df.shape
     variable_definitions = {
-        "Field of Study": "The area of study the individual pursued.",
-        "Current Occupation": "The current job or occupation of the individual.",
-        "Age": "The age of the individual.",
-        "Gender": "The gender of the individual.",
-        "Years of Experience": "The number of years the individual has been working.",
-        "Education Level": "The highest level of education achieved.",
-        "Industry Growth Rate": "The growth rate of the industry the individual works in.",
-        "Job Satisfaction": "Level of satisfaction with the current job (1-10).",
-        "Work-Life Balance": "Perceived work-life balance (1-10).",
-        "Job Opportunities": "Number of job opportunities available in the field.",
-        "Salary": "Annual income in the current job.",
-        "Job Security": "Perception of job security (1-10).",
-        "Career Change Interest": "Interest in changing careers (True/False).",
-        "Skills Gap": "Level of skills gap (1-10).",
-        "Family Influence": "Influence of family on career decisions.",
-        "Mentorship Available": "Whether mentorship is available (True/False).",
-        "Certifications": "Whether certifications have been acquired (True/False).",
-        "Freelancing Experience": "Experience in freelancing (True/False).",
-        "Geographic Mobility": "Willingness to relocate for work (True/False).",
-        "Professional Networks": "Number of professional network connections.",
-        "Career Change Events": "Number of career change events experienced.",
-        "Technology Adoption": "Comfort level with adopting new technology.",
-        "Likely to Change Occupation": "Likelihood of changing occupation (True/False)."
+        # Add column definitions here
     }
     column_info = [
         {"name": col, "type": str(df[col].dtype), "definition": variable_definitions.get(col, "Definition not available.")}
@@ -54,7 +38,6 @@ def about():
 
 @app.route('/data', methods=['GET'])
 def data():
-    # Convert the entire DataFrame to HTML for rendering in the template
     table_html = df.to_html(classes='table table-striped', index=False)
     return render_template('data.html', table_html=table_html)
 
