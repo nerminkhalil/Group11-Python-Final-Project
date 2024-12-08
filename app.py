@@ -1,10 +1,11 @@
 from flask import Flask, render_template
 import pandas as pd
+import os
 
 app = Flask(__name__)
 
-# Load the CSV file into a Pandas DataFrame
-CSV_PATH = r"C:\Users\User\Python_Project\career_change_prediction_dataset - Copy.csv"
+# Use a relative path for the CSV file
+CSV_PATH = os.path.join(os.path.dirname(__file__), "career_change_prediction_dataset.csv")
 df = pd.read_csv(CSV_PATH)
 
 @app.route('/')
