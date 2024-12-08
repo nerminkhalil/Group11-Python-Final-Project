@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="about-container">
+        <h1>About</h1>
+        <section>
+            <h2>About the Group</h2>
+            <p>
+                We are <strong>Group 11</strong> of Section (1) in the 
+                <strong>Introduction to Python Programming Course</strong> in the 
+                <strong>Data Analytics Program</strong> at Saint Clair College.
+            </p>
+            <p>
+                Our group members are:
+                <ul>
+                    <li>Nermin Khalil</li>
+                    <li>Khiria Mohamed</li>
+                    <li>Emily LeBlanc</li>
+                    <li>Sofia Alfaro</li>
+                    <li>Alaa AlHaj</li>
+                </ul>
+            </p>
+        </section>
+        <section>
+            <h2>About the Dataset</h2>
+            <p><strong>Number of Rows:</strong> {{ num_rows }}</p>
+            <p><strong>Number of Columns:</strong> {{ num_columns }}</p>
+            <h3>Variables:</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Variable Name</th>
+                        <th>Type</th>
+                        <th>Definition</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for col in column_info %}
+                        <tr>
+                            <td>{{ col.name }}</td>
+                            <td>{{ col.type }}</td>
+                            <td>{{ col.definition }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </section>
+    </div>
+{% endblock %}
