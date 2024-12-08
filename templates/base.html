@@ -3,19 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Flask Website</title>
-    <link rel="stylesheet" href="/static/style.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>{% block title %}Flask Project{% endblock %}</title>
 </head>
-<body>
+<body class="{% block body_class %}{% endblock %}">
     <header>
+        <img src="{{ url_for('static', filename='logo.png') }}" alt="Saint Clair College Logo">
         <nav>
-            <a href="/">Home</a>
-            <a href="/about">About</a>
-            <a href="/data">Data</a>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/about">About</a></li>
+                <li><a href="/data">Data</a></li>
+            </ul>
         </nav>
     </header>
-    <main>
-        {% block content %}{% endblock %}
-    </main>
+    <div class="content">
+        {% block content %}
+        {% endblock %}
+    </div>
 </body>
 </html>
