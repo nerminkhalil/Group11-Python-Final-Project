@@ -8,7 +8,7 @@ Welcome to the **Group 11 Python Project**! This project is a Flask-based web ap
 This web application provides users with insights into career changes based on various parameters. The platform allows:
 - **Exploration of career-related data.**
 - **Insights into group members and the dataset.**
-- **Interactive data table for browsing and filtering.**
+- **Data table for browsing.**
 
 ---
 
@@ -18,8 +18,8 @@ This web application provides users with insights into career changes based on v
    - Information about Group 11 members.
    - Summary of the dataset, including the number of rows and columns, and detailed definitions of the variables.
 3. **Data Page**:
-   - Displays the dataset in an interactive table format.
-   - Allows filtering and exploring key attributes.
+   - Displays the dataset in a table format.
+
 
 ---
 
